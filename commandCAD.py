@@ -8,7 +8,7 @@ commandOffset = 0
 workingDirectory = ""
 output = ""
 
-f = open('file','r')
+f = open('previousCommands','r')
 previousCommands = []
 for line in f:
 	previousCommands.append(line.replace("\n",""))
@@ -127,7 +127,7 @@ def forward(event):
 
 
 def saveCommand(event):
-	f = open('file','a')
+	f = open('previousCommands','a')
 	f.write(command+"\n")
 	f.close()
 # def exit(event):
