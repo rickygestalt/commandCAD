@@ -136,8 +136,11 @@ def saveCommand(event):
 	# listener.deactivate()
 	# sys.exit()
 
+cad.lcd.backlight_on()
 
-listener = pifacecad.SwitchEventListener()
+
+listener = pifacecad.SwitchEventListener(cad)
+
 listener.register(6, pifacecad.IODIR_FALLING_EDGE, backward)
 listener.register(7, pifacecad.IODIR_FALLING_EDGE, forward)
 listener.register(4, pifacecad.IODIR_FALLING_EDGE, exit)
@@ -145,11 +148,8 @@ listener.register(0, pifacecad.IODIR_FALLING_EDGE, scrollLeft)
 listener.register(1, pifacecad.IODIR_FALLING_EDGE, scrollRight)
 listener.register(2, pifacecad.IODIR_FALLING_EDGE, saveCommand)
 listener.register(3, pifacecad.IODIR_FALLING_EDGE, enter)
+
 listener.activate()
-
-
-
-
 
 class _Getch:
 	# Gets a single character from standard input.  Does not echo to the screen.
@@ -180,6 +180,7 @@ print(cad.switches[4].value)
 cad.lcd.write("$")
 commandIndex = 0
 command = ""
+
 while not cad.switches[4].value:
 	print(command)
 	# print ("Here1")
